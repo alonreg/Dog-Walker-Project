@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+</head>
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+
+<body>
+    <ul>
+        <li><a class="cursor-pointer" onclick="goBack()">
+            < back</a> </li> <li><a href="/">Main</a></li>
+        <li><a href="/about-us">About Us</a></li>
+        <li class="logout-side"><a class="active" href="/logout">Logout</a></li>
+    </ul>
+
+    <div class="bg small-bg">
+        <div class="centered">
+            <h2 class="text-background-opaque">Welcome to our Dog-Walking Service!</h2>
+            <h3> <b class="text-background-opaque">We love dogs,<br>and can't wait to meet your furry friend!</b> </h3>
+            <h3> <b class="text-background-opaque">To join us, please log-in using your Google Account, and then register to our service</b> </h3>
+        </div>
+    </div>
+
+    <br>
+    <form action="/login" method="get">
+        <button type="submit" class="button giant centered-bottom">Google Login</button>
+        <br><br>
+    </form>
+
+</body>
+
+</html>

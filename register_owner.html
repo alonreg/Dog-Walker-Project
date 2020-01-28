@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+</head>
+
+<script>
+    function validateForm() {
+        var name = document.forms["register_owner"]["name"].value;
+        var telephone = document.forms["register_owner"]["telephone"].value;
+        var bday = document.forms["register_owner"]["bday"].value;
+        var city = document.forms["register_owner"]["city"].value;
+
+        if (name == "" || telephone == "" || city == "" || bday == "") {
+            alert("Please fill out all of the fields");
+            return false;
+        }
+    }
+</script>
+
+<body>
+    <ul>
+        <li><a class="cursor-pointer" onclick="goBack()">
+                < back</a> </li> <li><a href="/">Main</a></li>
+        <li><a href="/register-walker">I'm actually a dog walker</a></li>
+        <li><a href="/about-us">About Us</a></li>
+        <li class="logout-side"><a class="active" href="/logout">Logout</a></li>
+    </ul>
+
+    <div class="bg small-bg">
+
+
+        <script>
+            function goBack() {
+                window.history.back();
+            }
+        </script>
+        <div class="centered">
+            <h2 class="text-background-opaque">Dog Owner Registration</h2>
+            <h3> <b class="text-background-opaque">Hi {{ user.nickname() }}!<br>Please fill in the following
+                    information</b> </h3>
+        </div>
+    </div>
+
+    <br>
+
+
+    <form name="register_owner" class="form-text" action="/submit-owner" onsubmit="return validateForm()" method="post">
+        Email Address: (Log Out to change)<br>
+        <input type="email" name="email" value="{{user.email()}}" disabled="disabled">
+        <br><br>
+        Name:<br>
+        <input type="text" name="name" value="">
+        <br><br>
+        Birthday:<br>
+        <input type="date" name="bday" value="">
+        <br><br>
+        Telephone (8 characters):<br>
+        <input type="tel" name="telephone" value="">
+        <br><br>
+        Residence - City:<br>
+        <select name="city" required>
+            {% for city in cities %}
+            <option value={{city}}>{{city}}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+        <input class="button" type="submit" value="Submit">
+        <br><br>
+    </form>
+
+
+
+</body>
+
+</html>

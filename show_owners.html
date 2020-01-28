@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+</head>
+
+<body>
+    <ul>
+        <li><a class="cursor-pointer" onclick="goBack()">< back</a></li>
+        <li><a href="/">Main</a></li>
+        <li><a href="/about-us">About Us</a></li>
+        <li class="logout-side"><a class="active" href="/logout">Logout</a></li>
+      </ul>
+
+    <div class="bg">
+        
+    <div class="centered">
+            <h2  class="text-background-opaque">View Your Clients</h2>
+            <h3> <b class="text-background-opaque">Hi {{ user.email() }}!</b> </h3>
+            <h2 class="text-background-opaque">You can filter them according to your needs</h2>
+        </div>
+    </div>
+
+
+
+
+    <h2 class="dog-list">   My Clients:</h2>
+    {% for dog_record in list_of_dogs %}
+            <h3 class="dog-list"> <b>  ◘   {{dog_record.d_Name}}</b>     </h3>
+    {% endfor %}
+
+
+
+</body>
+
+</html>

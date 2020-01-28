@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+</head>
+
+<script>
+    function validateForm() {
+        var name = document.forms["register_walker"]["name"].value;
+        var telephone = document.forms["register_walker"]["telephone"].value;
+        var city = document.forms["register_walker"]["city"].value;
+
+        var Poodle = document.forms["register_walker"]["Poodle"].checked;
+        var Chihuahua = document.forms["register_walker"]["Chihuahua"].checked;
+        var Husky = document.forms["register_walker"]["Husky"].checked;
+        var Golden = document.forms["register_walker"]["Golden"].checked;
+        var SnoopDog = document.forms["register_walker"]["SnoopDog"].checked;
+
+        var sun = document.forms["register_walker"]["sun"].checked;
+        var mon = document.forms["register_walker"]["mon"].checked;
+        var tue = document.forms["register_walker"]["tue"].checked;
+        var wed = document.forms["register_walker"]["wed"].checked;
+        var thu = document.forms["register_walker"]["thu"].checked;
+        var fri = document.forms["register_walker"]["fri"].checked;
+        var sat = document.forms["register_walker"]["sat"].checked;
+        var days = [sun, mon, tue, wed, thu, fri, sat];
+
+        var prices = document.getElementsByClassName( 'prices' );
+        var dog_num = document.getElementsByClassName( 'dog_num' );
+
+        if (name == "" || telephone == "" || city == "") {
+            alert("You're missing one of the fields, please try again");
+            return false;
+        }
+        if (Poodle == false && Chihuahua == false && Husky == false && Golden == false && SnoopDog == false ) {
+            alert("Please choose at least one breed!");
+            return false;
+        }
+
+        if (sun == false && mon == false && tue == false && wed == false && thu == false && fri == false  && sat == false) {
+            alert("Please choose at least one working day, you lazy bustard!");
+            return false;
+        }
+        for (var i = 0; i < prices.length; i++) {
+            if ( days[i] && (prices[i].value <= 0 || prices[i].value == '') ) {
+                alert("Your price is too damn cheap, please choose a positive number for price");
+                return false;
+            };
+            if ( days[i] && (dog_num[i].value <= 0 || dog_num[i].value == '') ) {
+                alert("You cant take zero dogs for a walk! Please choose a positive number");
+                return false;
+            };
+        };
+        alert("   Success!   Your form is valid, redirecting to your home page");
+    }
+</script>
+
+
+<body>
+
+    <ul>
+        <li><a class="cursor-pointer" onclick="goBack()">< back</a></li>
+        <li><a href="/">Main</a></li>
+        <li><a href="/register-owner">I'm actually a dog owner</a></li>
+        <li><a href="/about-us">About Us</a></li>
+        <li class="logout-side"><a class="active" href="/logout">Logout</a></li>
+      </ul>
+
+    <div class="bg small-bg">
+
+        <form class="form" action="/logout">
+            <!--add logout-->
+            <input class="logout" type="submit" value="Logout" />
+
+        </form>
+
+        <script>
+            function goBack() {
+                window.history.back();
+            }
+            
+        </script>
+
+        <div class="centered">
+            <h2 id="title1"  class="text-background-opaque">Dog Walker Registration</h2>
+            <h3> <b class="text-background-opaque">Hi {{ user.nickname() }}!<br>Please fill in the following information</b> </h3>
+        </div>
+    </div>
+
+    <br>
+
+
+    <form name="register_walker" class="form-text" action="/submit-walker" method="post" onsubmit="return validateForm()">
+        Email Address: (Log Out to change)<br>
+        <input type="text" name="email" value="{{user.email()}}" disabled="disabled">
+        <br><br>
+        Name:<br>
+        <input type="text" name="name" value="">
+        <br><br>
+        Telephone (8 characters):<br>
+        <input type="text" name="telephone" value="">
+        <br><br>
+        Residence - City:<br>
+        <select name="city" required>
+            {% for city in cities %}
+            <option value={{city}}>{{city}}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+        Dog breeds you work with:<br>
+        <input type="checkbox" id="Poodle" name="Poodle">  Poodle<br>
+        <input type="checkbox" name="Chihuahua">  Chihuahua<br>
+        <input type="checkbox" name="Husky">  Husky<br>
+        <input type="checkbox" name="Golden">  Golden Retriever<br>
+        <input type="checkbox" name="SnoopDog">  SnoopDog<br>
+        <br><br>
+        Working Days, price, maximal number of dogs:<br>
+        <table class="days-table">
+            <tr>
+                <th></th>
+                <th>Sunday</th>
+                <th>Monday</th>
+                <th>Tuesday</th>
+                <th>Wednesday</th>
+                <th>Thursday</th>
+                <th>Friday</th>
+                <th>Saturday</th>
+            </tr>
+            <tr>
+                <td>Working?</td>
+                <td><input type="checkbox" name="sun"><br></td>
+                <td><input type="checkbox" name="mon"><br></td>
+                <td><input type="checkbox" name="tue"><br></td>
+                <td><input type="checkbox" name="wed"><br></td>
+                <td><input type="checkbox" name="thu"><br></td>
+                <td><input type="checkbox" name="fri"><br></td>
+                <td><input type="checkbox" name="sat"><br></td>
+            </tr>
+            <tr>
+                <td>Price ($)</td>
+                <td><input class="prices" type="number" name="sun_price" value="0"><br></td>
+                <td><input class="prices" type="number" name="mon_price" value="0"><br></td>
+                <td><input class="prices" type="number" name="tue_price" value="0"><br></td>
+                <td><input class="prices" type="number" name="wed_price" value="0"><br></td>
+                <td><input class="prices" type="number" name="thu_price" value="0"><br></td>
+                <td><input class="prices" type="number" name="fri_price" value="0"><br></td>
+                <td><input class="prices" type="number" name="sat_price" value="0"><br></td>
+            </tr>
+            <tr>
+                <td>Dogs Number</td>
+                <td><input class="dog_num" type="number" name="sun_num" value="0"><br></td>
+                <td><input class="dog_num" type="number" name="mon_num" value="0"><br></td>
+                <td><input class="dog_num" type="number" name="tue_num" value="0"><br></td>
+                <td><input class="dog_num" type="number" name="wed_num" value="0"><br></td>
+                <td><input class="dog_num" type="number" name="thu_num" value="0"><br></td>
+                <td><input class="dog_num" type="number" name="fri_num" value="0"><br></td>
+                <td><input class="dog_num" type="number" name="sat_num" value="0"><br></td>
+            </tr>
+        </table>
+
+        <br>
+        <input class="button" type="submit" value="Submit">
+        <br><br>
+    </form>
+
+
+
+</body>
+
+</html>

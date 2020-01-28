@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+</head>
+
+<body>
+
+    <ul>
+        <li><a class="cursor-pointer" onclick="goBack()">< back</a></li>
+        <li><a href="/">Main</a></li>
+        <li><a href="/trips">My Trips</a></li>
+        <li><a href="/filter-owners">View & Filter Dog Owners</a></li>
+        <li><a href="/about-us">About Us</a></li>
+        <li class="logout-side"><a class="active" href="/logout">Logout</a></li>
+      </ul>
+
+    <div class="bg small-bg">
+
+
+        <script>
+            function goBack() {
+                window.history.back();
+            }
+
+            function disableFilters() {
+                current = document.getElementById("maxAge").disabled;
+                document.getElementById("maxAge").disabled = !current;
+                document.getElementById("minAge").disabled = !current;
+                document.getElementById("city").disabled = !current;
+            }
+        </script>
+        <div class="centered">
+            <h2  class="text-background-opaque">Filter Clients (Dog Owners)</h2>
+            <h3> <b class="text-background-opaque">Hi {{ user.nickname() }}!<br>Please fill in the following details</b> </h3>
+        </div>
+    </div>
+
+    <br>
+
+
+    <form class="form-text" action="/submit-owner-filter" method="get">
+        <div style="float:left;">
+            <label for="city">Residence:</label>
+            <select name="city" required id="city">
+                {% for city in cities %}
+                <option value={{city}}>{{city}}</option>
+                {% endfor %}
+            </select>
+            <label for="minAge">&nbsp; Minimal Age:</label>
+            <input name="minAge" type="number" max="120" min="0" placeholder="Min" class="form-control" id="minAge" value="0">
+            <label for="maxAge">&nbsp; Maximal Age:</label>
+            <input name="maxAge" type="number" max="119" min="0" placeholder="Max" class="form-control" id="maxAge" value="110">
+            &nbsp; 
+            <label for="maxAge" onchange="disableFilters()">&nbsp; View All Clients:
+            <input type="checkbox" name="all" ></label>
+        </div>
+        <br><br><br>
+        <input class="button" type="submit" value="Filter">
+
+    </form>
+
+
+    <center>
+        <h1 class="form-text">Filtered Results</h1>
+        <table class="form-text">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Telephone</th>
+                <th>Age</th>
+                <th>Residence</th>
+                <th>Send Email</th>
+            </tr>
+            {% for owner in owners %}
+            <tr>
+                <td>{{owner.o_name}}</td>
+                <td>{{owner.o_email}}</td>
+                <td>{{owner.o_telephone}}</td>
+                <td>{{owner.o_age}}</td>
+                <td>{{owner.o_city}}</td>
+                <td><button onclick="location.href='mailto:{{owner.o_email}}';" class="button">Contact</button></td>
+            </tr>
+            {% endfor %}
+        </table>
+        <br><br>
+
+    </center>
+
+
+
+</body>
+
+</html>

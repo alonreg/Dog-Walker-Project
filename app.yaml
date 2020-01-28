@@ -1,0 +1,50 @@
+# -----------------------------------------------------------------------------
+# application - this is the name of the application
+# -----------------------------------------------------------------------------
+#application: final-project-maxim-alon-asaf
+
+# -----------------------------------------
+# the version of the application we create
+# -----------------------------------------
+#version: 1
+
+# -----------------------------------------
+# programming language
+# -----------------------------------------
+runtime: python27
+
+# -----------------------------------------
+# python sub version
+# -----------------------------------------
+api_version: 1
+
+# ---------------------------------------------------------------------
+# threadsafe - to prevent collision between calls to the application
+#              from different clients
+# ---------------------------------------------------------------------
+threadsafe: true
+
+# ---------------------------------------------------------------------
+# handlers - define an application file for each URL we get
+# ---------------------------------------------------------------------
+handlers:
+- url: /stylesheets
+  static_dir: stylesheets
+- url: /images
+  static_dir: images
+
+- url: /.*
+  script: main.app
+
+
+  
+# ---------------------------------------------------------------------
+# libraries in use - jinja2(latest version)
+# --------------------------------------------------------------------- 
+libraries:
+- name: jinja2
+  version: latest
+  
+- name: MySQLdb
+  version: latest
+  

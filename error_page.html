@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+</head>
+
+<body>
+    <ul>
+        <li><a class="cursor-pointer" onclick="goBack()">< back</a></li>
+        <li><a href="/">Main</a></li>
+        <li><a href="/about-us">About Us</a></li>
+        <li class="logout-side"><a class="active" href="/logout">Logout</a></li>
+      </ul>
+
+      <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+
+    <div class="bg">
+        
+    <div class="centered">
+            <h2  class="text-background-opaque error">Error Page</h2>
+
+            <h3> <b class="text-background-opaque">Error description:</b> </h3>
+            <h2 class="text-background-opaque">{{message}}</h2>
+        </div>
+    </div>
+    <center>    <img src="stylesheets/error.png"/></center>
+
+
+</body>
+
+</html>

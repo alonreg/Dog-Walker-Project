@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+</head>
+
+<body>
+    <ul>
+        <li><a class="cursor-pointer" onclick="goBack()">< back</a></li>
+        <li><a href="/">Main</a></li>
+        <li><a href="/trips">View My Trips</a></li>
+        <li><a href="/filter-owners">View & Filter Owners</a></li>
+        <li><a href="/about-us">About Us</a></li>
+        <li class="logout-side"><a class="active" href="/logout">Logout</a></li>
+      </ul>
+      <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+    <div class="bg">
+        
+    <div class="centered">
+            <h2  class="text-background-opaque">Dog Walker Home Page</h2>
+
+            <h3> <b class="text-background-opaque">Hi {{ user.email() }}!</b> </h3>
+            <h2 class="text-background-opaque">Thank you for working with us!</h2>
+            <h2 class="text-background-opaque"> Please choose an action:</h2>
+        </div>
+    </div>
+
+
+    <form class="form-inline" action="/trips" method="get">
+        <button type="submit" class="button register-type">My Trips</button>
+        <br><br>
+        <button  type="submit" formaction="/filter-owners" class="button register-type">View Dog Owners</button>
+    </form>
+
+
+
+
+</body>
+
+</html>

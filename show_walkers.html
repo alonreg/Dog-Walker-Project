@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+</head>
+
+<body>
+    <ul>
+        <li><a class="cursor-pointer" onclick="goBack()">< back</a></li>
+        <li><a href="/register-dog">Add New Dog</a></li>
+        <li><a href="/">Main</a></li>
+        <li><a href="/about-us">About Us</a></li>
+        <li class="logout-side"><a class="active" href="/logout">Logout</a></li>
+      </ul>
+
+    <div class="bg">
+        
+    <div class="centered">
+            <h2  class="text-background-opaque">Schedule an appointment</h2>
+            <h3> <b class="text-background-opaque">Hi {{ user.email() }}!</b> </h3>
+            <h2 class="text-background-opaque"> When is the perfect time for you?</h2>
+        </div>
+    </div>
+
+
+    <form class="form-inline" action="/register-dog" method="get">
+        <button type="submit" class="button register-type">Add Dog +</button>
+        <br><br>
+        <button  type="submit" formaction="javascript:alert('Page will redirected to another page');window.location.href='/register-dog';" class="button register-type">View Dog Walkers</button>
+    </form>
+
+    <h2 class="dog-list">   Current Dog-Clients:</h2>
+    {% for dog_record in list_of_dogs %}
+            <h3 class="dog-list"> <b>  ◘   {{dog_record.d_Name}}   </h3>
+            <h3 class="dog-list">   ◘   {{dog_record.d_Name}}     </h3>
+            <h3 class="dog-list"> <b>  ◘   {{dog_record.d_Name}}</b>     </h3>
+
+    {% endfor %}
+
+
+
+</body>
+
+</html>

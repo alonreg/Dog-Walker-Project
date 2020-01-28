@@ -1,0 +1,23 @@
+<html>
+	<head>
+		<link rel = "stylesheet" type = "text/css" href = "stylesheets/barchart.css">
+		<title>HW02 - Nonogram Show Picture</title>
+	</head>
+	<body>
+		<table>
+			<tr>
+		{% for i in range(len) %}
+				{% if pix[i] == 1 %}
+					<td class = 'bar_black'></td>
+				{% endif %}
+				{% if pix[i]==0 %}
+					<td class = 'bar_white'></td>
+				{% endif %}
+				{% if (i+1)%y==0 %}
+					</tr><tr>
+			{% endif %}
+		{% endfor %}
+		</tr>
+		</table>
+	</body>
+</html>

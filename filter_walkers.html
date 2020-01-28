@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+</head>
+<script>
+    function goBack() {
+        window.history.back();
+    }
+    function validateForm() {
+        var start = document.forms["walker_filters"]["startDate"].value;
+        var end = document.forms["walker_filters"]["endDate"].value;
+
+        if (start == "" || end == "" || Date.parse(start) > Date.parse(end) ) {
+            alert("Please correct your start and end dates");
+            return false;
+        }
+        if (Date.parse(start) < Date.now() || Date.parse(end) < Date.now || Date.parse(start) > Date.parse(end) ) {
+            alert("Your dates are in the past, you gotta live in the present!");
+            return false;
+        }
+    }
+</script>
+
+<body>
+
+    <ul>
+        <li><a class="cursor-pointer" onclick="goBack()">
+                < back</a> </li> <li><a href="/">Main</a></li>
+                <li><a href="/register-dog">Add Dog+</a></li>
+                <li><a href="/about-us">About Us</a></li>
+                <li class="logout-side"><a class="active" href="/logout">Logout</a></li>
+    </ul>
+
+    <div class="bg small-bg">
+
+
+        <button onclick="goBack()">Go Back</button>
+
+
+        <div class="centered">
+            <h2 class="text-background-opaque">Filter Dog Walkers</h2>
+            <h3> <b class="text-background-opaque">Hi {{ user.nickname() }}!<br>Please fill in your details<br> and we'll find you the perfect match!</b> </h3>
+        </div>
+    </div>
+
+    <br>
+
+    <form name="walker_filters" class="form-text" action="/submit-walker-filter" onsubmit="return validateForm()" method="get">
+        <div style="float:left;">
+            <label for="startDate">Start</label>
+            <input type="date" class="form-control" id="startDate" name="startDate">
+            <label for="startDate">&nbsp; End</label>
+            <input type="date" class="form-control" id="endDate" name="endDate">
+            <label for="dog">&nbsp; Dog:</label>
+            <select name="dog" required>
+                {% for dog in dogs %}
+                <option value={{dog.d_id}}>{{dog.d_name}}</option>
+                {% endfor %}
+            </select>
+            &nbsp;
+            <label>
+                <input name="su" type="checkbox" value="su">&nbsp;Su&nbsp;
+            </label>
+            <label class="checkbox-inline">
+                <input name="mo"  type="checkbox" value="mo">&nbsp;Mo&nbsp;
+            </label>
+            <label class="checkbox-inline">
+                <input name="tu" type="checkbox" value="tu">&nbsp;Tu&nbsp;
+            </label>
+            <label>
+                <input name="we" type="checkbox" value="we">&nbsp;We&nbsp;
+            </label>
+            <label class="checkbox-inline">
+                <input name="th" type="checkbox" value="th">&nbsp;Th&nbsp;
+            </label>
+            <label class="checkbox-inline">
+                <input name="fr" type="checkbox" value="fr">&nbsp;Fr&nbsp;
+            </label>
+            <label>
+                <input name="sa" type="checkbox" value="sa">&nbsp;Sa&nbsp;
+            </label>
+        </div>
+        <br><br><br>
+        <input class="button" type="submit" value="Filter">
+
+    </form>
+
+    {% for date in dates %}
+    {% if dates[date]|length > 1 %}
+    <center>
+        <h1 class="form-text">Filtered Results for {{date}}</h1>
+        <table class="form-text">
+            
+            <tr>
+                <th>Date</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Telephone</th>
+                <th>Price</th>
+                <th>Schedule</th>
+            </tr>
+            {% for walker in dates[date] %}
+            <form name="schedule" action="/schedule" method="GET">
+                <tr>
+                    <td>{{date}}</td>
+                    <td>{{walker.w_name}}</td>
+                    <td>{{walker.w_email}}</td>
+                    <td>{{walker.w_telephone}}</td>
+                    <td>{{walker.w_price}}</td>
+                    <td>
+                        <form name="schedule" action="/schedule" method="GET">
+                            <input type="hidden" name="date" value="{{date}}"/>
+                            <input type="hidden" name="dogID" value="{{dogID}}"/>
+                            <input type="hidden" name="w_email" value="{{walker.w_email}}"/>
+                            <button class="button" onclick="alert('Added to your trips!')">Apply</button>                        
+                        </form>
+                     </td>
+                </tr>
+            {% endfor %}
+        </table>
+        <br><br>
+    </center>
+    {% endif %}
+    {% endfor %}
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+</head>
+<script>
+    function goBack() {
+        window.history.back();
+    }
+
+    function disableFilters() {
+        current = document.getElementById("maxAge").disabled;
+        document.getElementById("maxAge").disabled = !current;
+        document.getElementById("minAge").disabled = !current;
+        document.getElementById("city").disabled = !current;
+    }
+</script>
+<body>
+
+    <ul>
+        <li><a class="cursor-pointer" onclick="goBack()">< back</a></li>
+        <li><a href="/">Main</a></li>
+        <li><a href="/trips">My Trips</a></li>
+        <li><a href="/filter-owners">View & Filter Dog Owners</a></li>
+        <li><a href="/about-us">About Us</a></li>
+        <li class="logout-side"><a class="active" href="/logout">Logout</a></li>
+      </ul>
+
+    <div class="bg small-bg">
+
+
+        <div class="centered">
+            <h2  class="text-background-opaque">View My Trips</h2>
+            <h3> <b class="text-background-opaque">Hi {{ user.nickname() }}!<br>Here are all of your trips</b> </h3>
+        </div>
+    </div>
+
+    <br>
+
+    <center>
+        <h1 class="form-text">My Trips</h1>
+        <table class="form-text">
+            <tr>
+                <th>Dog Id</th>
+                <th>Date</th>
+                <th>From Home?</th>
+                <th>Dog Age</th>
+                <th>Dog Breed</th>
+            </tr>
+            {% for trip in trips %}
+            <tr>
+                <td>{{trip.dogID}}</td>
+                <td>{{trip.t_date}}</td>
+                <td>{{trip.t_fromHome}}</td>
+                <td>{{trip.d_age}}</td>
+                <td>{{trip.d_breed}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <br><br>
+
+    </center>
+
+
+
+</body>
+
+</html>

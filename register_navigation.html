@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+</head>
+
+<body>
+    <ul>
+        <li><a class="cursor-pointer" onclick="goBack()">< back</a></li>
+        <li><a href="/about-us">About Us</a></li>
+        <li class="logout-side"><a class="active" href="/logout">Logout</a></li>
+      </ul>
+
+    <div class="bg">
+        
+    <form class="form" action="/logout"> <!--add logout-->
+        <input class="logout" type="submit" value="Logout" />
+    </form>
+        <div class="centered">
+            <h3> <b class="text-background-opaque">Hi {{ user.email() }}! It's time to sign you up!</b> </h3>
+            <h2 class="text-background-opaque"> Please choose your user type:</h2>
+        </div>
+    </div>
+
+
+
+ 
+   
+
+    <form class="form-inline" action="/register-walker" method="get">
+        <button type="submit" class="button register-type">I'm a dog walker!</button>
+        <br><br>
+        <button  type="submit" formaction="/register-owner" class="button register-type">I'm a dog owner!</button>
+    </form>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,221 @@
+/* ----------------------------------------------------*/
+/* barchart.css                                        */
+/* ----------------------------------------------------*/
+/* css file for handling the display of bar charts     */
+/* ----------------------------------------------------*/
+/* Author       - Tomer Lev                            */
+/* Last updated - 08.10.2019                           */
+/* ----------------------------------------------------*/
+
+/* <td> Style for the value of each bar */
+td.bar_black {
+	background-color:#000000;
+}
+
+/* <td> style for the bar chart cells */
+td.bar_white {
+	background-color:#F8F8FF;
+}
+
+td {
+    width: 50px;
+	height: 50px;
+}
+
+/* Setting tables border */
+table {
+	border-collapse: collapse;
+	}
+
+.form-inline {
+	display: flex;
+	flex-flow: row wrap;
+	align-items: center;
+
+  }
+
+.button {
+	background-color: #4CAF50;
+	border: none;
+	color: white;
+	padding: 10px 25px;
+	font-weight: 600;
+	text-align: center;
+	font-size: 20px;
+	cursor: pointer;
+	}
+	
+.button:hover {
+	background-color: green;
+}
+
+.button.register-type{
+	font-size: 50px;
+	width: 50%;
+	height: 120px;
+}
+
+.logout {
+	background-color: grey;
+	color: white;
+	font-size: 14px;
+}
+
+.choose-type-screen {
+ background-color: green;
+}
+
+
+body, html {
+	height: 100%;
+	margin: 0;
+  }
+  
+  .bg {
+	/* The image used */
+	background-image: url("dog_black_eye.jpg");
+	/* Full height */
+	height: 50%; 
+  
+	/* Center and scale the image nicely */
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+  }
+  .small-bg {
+	height: 50%; 
+  }
+
+  .centered {
+	position: absolute;
+	top: 25%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: white;
+	font-weight: 500;
+	text-align: center;
+	font-size: 20px;
+	font-family: "Arial", serif;
+  }
+  .centered-bottom {
+	left: 50%;
+	transform: translate(-50%,0);
+	font-size: 50px;
+	width: 500px;
+	height: 120px;
+	background-color: #4CAF50;
+	border: none;
+	color: white;
+	padding: 10px 25px;
+	font-weight: 600;
+	text-align: center;
+	position: relative;
+	cursor: pointer;
+	
+ }
+
+
+  .dog-list {
+	  color: black;
+	  font-size: 20px;
+	  font-family: "Arial", serif;
+	  padding-left: 30px;
+  }
+
+  .form-text {
+	font-size: 20px;
+	font-family: "Arial", serif;
+	padding: 20px;
+  }
+
+
+  table, th, td, tr {
+	border: 1px solid black;
+	padding: 5px;
+	text-align: center;
+    vertical-align: middle;
+  }
+
+
+
+  .days-table {
+	border-spacing: 15px;
+	border: 2px solid black;
+	padding: 5px;
+  }
+
+  input[type=number]{
+    width: 60px;
+} 
+
+input[type=checkbox] {
+	transform: scale(2);
+
+}
+
+
+
+
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #333;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: 600;
+  }
+  
+  li {
+	float: left;
+	border-right: 1px solid #bbb;
+  }
+  
+  li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+  }
+  
+  li a:hover:not(.active) {
+	background-color: #111;
+  }
+  
+  .active {
+	background-color: #4CAF50;
+  }
+
+  .logout-side {
+	float:right;
+  }
+
+  .cursor-pointer {
+	cursor:pointer;
+  }
+
+  .text-background-opaque {
+	background: rgb(87, 82, 82);
+    background: rgba(204, 204, 204, 0.7);
+  }
+
+  .about-us {
+	top: 0;
+	text-align: center;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: 600;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 40%;
+  }
+
+  .error {
+	  color: rgb(197, 30, 30);
+	  background: rgb(197, 172, 30);
+  }
+

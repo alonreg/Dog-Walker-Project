@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+</head>
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+
+    function validateForm() {
+        var name = document.forms["register_dog"]["name"].value;
+        var male = document.getElementById('male').checked;
+        var female = document.getElementById('female').checked;
+        var other = document.getElementById('other').checked;
+        var age = document.forms["register_dog"]["age"].value;
+        var breed = document.forms["register_dog"]["breed"].value;
+
+        if (name == "" || age == "" || breed == "" || (male == false && female == false && other == false)) {
+            alert("Please fill out all of the fields");
+            return false;
+        }
+    }
+</script>
+
+
+<body> 
+    <ul>
+        <li><a class="cursor-pointer" onclick="goBack()">< back</a></li>
+        <li><a href="/">Main</a></li>
+        <li><a href="/owner-home">Owner Home Page</a></li>
+        <li><a href="/filter-walkers">View Walkers</a></li>
+        <li><a href="/about-us">About Us</a></li>
+        <li class="logout-side"><a class="active" href="/logout">Logout</a></li>
+      </ul>
+
+    <div class="bg small-bg">
+
+
+        <div class="centered">
+            <h2  class="text-background-opaque">Add New Dog +</h2>
+            <h3> <b class="text-background-opaque">Hi {{ user.nickname() }}!<br>Please fill in the following information</b> </h3>
+        </div>
+    </div>
+
+    <br>
+
+
+    <form name="register_dog" class="form-text" action="/submit-dog" method="post" onsubmit="return validateForm()">
+        Owner's Email Address: (Log Out to change)<br>
+        <input type="text" name="email" value="{{user.email()}}" disabled="disabled">
+        <br><br>
+        Name:<br>
+        <input type="text" name="name" value="">
+        <br><br>
+        Gender:<br>
+        <input type="radio" name="gender" id="male" value="male"> Male<br>
+        <input type="radio" name="gender" id="female" value="female"> Female<br>
+        <input type="radio" name="gender" id="other" value="other"> Other<br>  
+        <br><br>
+        Age:<br>
+        <input type="number" name="age" value="">
+        <br><br>
+        Breed:<br>
+        <select name="breed" required>
+            {% for breed in breeds %}
+            <option value={{breed}}>{{breed}}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+        <input class="button" type="submit" value="Submit">
+        <br><br>
+    </form>
+
+
+
+</body>
+
+</html>

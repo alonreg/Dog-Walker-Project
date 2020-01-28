@@ -1,0 +1,39 @@
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="stylesheets/forms_table.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <a href="/newmessage">Compose</a>
+    <a href="/showsentmessages">Sent Messages</a>
+    <br />
+    <hr />
+    <h2 class="important_title">Sent Messages </h2>
+    <table class="collapsed_table framed">
+        <tr class="labels_row">
+            <td> Id </td>
+            <td> Name</td>
+            <td> Owner Email </td>
+            <td> Time </td>
+            <td> Content </td>
+        </tr>
+        {% for dog_record in list_of_dogs %}
+        <tr>
+            <td>
+                <a href="/get_message_by_id?id={{dog_record.m_Name}}">
+                    {{dog_record.m_Id }} </a>
+            </td>
+            <td>{{dog_record.m_Name}} </td>
+            <td>{{dog_record.m_OwnerEmail}} </td>
+            <td>another one</td>
+            <td>another field</td>
+
+            
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+
+</html>

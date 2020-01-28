@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!--
+        This HTML page gets an input parameter i_user_object
+        and prints in an HTML table the following attributes:
+        nickname
+        email
+        user_id
+                                                                    -->
+
+
+<html>
+    <head>
+    </head>
+	<body>
+
+		<h1 style="color:red">Welcome</h1>
+		<div>
+			<table>
+				<tr><th colspan = 2> Dogwalker - Show Status</th></tr>
+				<tr>
+					<td style="color:blue">nickname</td>
+					<td>{{ i_user_object.nickname() }}</td>
+				</tr>
+				<tr>
+					<td style="color:red">email</td>
+					<td> {{ i_user_object.email() }} </td>
+				</tr>
+				<tr>
+					<td style="color:green">id</td>
+					<td> {{ i_user_object.user_id() }} </td>
+				</tr>				
+			</table>
+		</div>
+	</body>
+</html>
